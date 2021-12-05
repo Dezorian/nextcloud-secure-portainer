@@ -24,8 +24,6 @@ services:
       - nextcloud:/var/www/html
     environment:
       - VIRTUAL_HOST=${VIRTUAL_HOST_VALUE}
-      - LETSENCRYPT_HOST=${LETSENCRYPT_HOST_VALUE}
-      - LETSENCRYPT_EMAIL=${LETSENCRYPT_EMAIL_VALUE}
       - MYSQL_HOST=db
       - REDIS_HOST=redis  
       - MYSQL_PASSWORD=${MYSQL_PASSWORD_VALUE}
@@ -69,9 +67,9 @@ services:
     image: jrcs/letsencrypt-nginx-proxy-companion
     restart: always
     environment:
-      - VIRTUAL_HOST=${VIRTUAL_HOST_VALUE}
       - LETSENCRYPT_HOST=${LETSENCRYPT_HOST_VALUE}
       - LETSENCRYPT_EMAIL=${LETSENCRYPT_EMAIL_VALUE}
+      - LETSENCRYPT_TEST=${LETSENCRYPT_TEST_VALUE}
     volumes:
       - certs:/etc/nginx/certs
       - acme:/etc/acme.sh
